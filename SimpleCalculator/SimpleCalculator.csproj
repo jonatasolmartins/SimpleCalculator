@@ -1,0 +1,34 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(DotNetVersion);$(DotNetVersion)-android;$(DotNetVersion)-ios</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OverrideTargetFramework)'!=''">$(OverrideTargetFramework)</TargetFrameworks>
+
+    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uno.WinUI" />
+    <PackageReference Include="Uno.WinUI.Lottie" Condition="!$(TargetFramework.Contains('windows10'))" />
+    <PackageReference Include="Uno.WinUI.DevServer" Condition="'$(Configuration)'=='Debug' AND !$(TargetFramework.Contains('windows10'))" />
+    <PackageReference Include="Uno.WinUI.Lottie" />
+    <PackageReference Include="Uno.WinUI.DevServer" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.Resizetizer" />
+    <PackageReference Include="Uno.WinUI.Markup" />
+    <PackageReference Include="Uno.Extensions.Markup.Generators">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Uno.Material.WinUI.Markup" />
+    <PackageReference Include="Uno.Themes.WinUI.Markup" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Uno.Material.WinUI" />
+    <PackageReference Include="Uno.Toolkit.WinUI.Material" />
+    <PackageReference Include="Uno.Toolkit.WinUI.Markup" />
+    <PackageReference Include="Uno.Extensions.Core.WinUI" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Condition="$(TargetFramework.Contains('windows10'))" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Condition="$(TargetFramework.Contains('windows10'))" />
+  </ItemGroup>
+
+</Project>
